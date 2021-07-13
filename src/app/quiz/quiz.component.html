@@ -1,0 +1,135 @@
+
+
+  <br><br>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="le">Online Test</h2>
+                 <form [formGroup]="requiredForm" novalidate (ngSubmit)="onSubmit()">
+                    <fieldset>
+                        <legend class="le">Information about you:</legend>
+                    <div class="form-group">
+                        <label>First Name:
+                        <input type="text" formControlName="firstName" class="form-control"  /></label></div>
+                        <div *ngIf="requiredForm.controls['firstName'].invalid && requiredForm.controls['firstName'].touched " class="error">
+                            <div *ngIf="requiredForm.controls['firstName'].errors.required">
+                           First Name is required.
+                           </div>
+                        </div>
+                  
+                    
+                    <div class="form-group">
+                        <label>Last Name :
+                        <input type="text" formControlName="lastName" class="form-control"  /></label></div>
+                       
+                        <div *ngIf="requiredForm.controls['lastName'].invalid && requiredForm.controls['lastName'].touched" class="error">
+                            <div *ngIf="requiredForm.controls['lastName'].errors.required">
+                           Last Name is required.
+                           </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="center-block">Email:
+                            <input class="form-control" formControlName="email">
+                            </label>
+                         </div>
+                         <div *ngIf="requiredForm.controls['email'].invalid && requiredForm.controls['email'].touched" class="error">
+                             <div *ngIf="requiredForm.controls['email'].errors.required">
+                            Email is required.
+                            </div>
+                            <small>Format: example@mail.com</small><br><br>
+                            </div>
+                        
+                    <div class="form-group"><label>Gender</label>
+                    <input list="gender" name="gender" class="form-control">
+  <datalist id="gender">
+    <option value="Famale">
+    <option value="Male">
+    
+  </datalist></div>
+                 
+                    <div class="form-group">
+                    <label for="birthdaytime" >Birthday :
+                    <input type="date" formControlName="Birthday"class="form-control"  /></label></div>
+                    <div *ngIf="requiredForm.controls['Birthday'].invalid && requiredForm.controls['Birthday'].touched" class="error">
+                        <div *ngIf="requiredForm.controls['Birthday'].errors.required">
+                       Birthday is required.
+                       </div>
+                       </div> 
+
+                    <div class="form-group">
+                    <label for="phone" >Enter your phone number:</label>
+                    <input type="tel" id="phone"  formControlName="phone" name="phone"  class="form-control" /></div>
+                    <div *ngIf="requiredForm.controls['phone'].invalid && requiredForm.controls['phone'].touched" class="error">
+                        <div *ngIf="requiredForm.controls['phone'].errors.required">
+                       phone number is required.
+                       </div>
+                      
+                    <small>Format: 123-45-678</small><br><br>
+                    </div>
+
+<div class="form-group">
+<label for="homepage" >Add your LinkdIn:</label>
+  <input type="url" id="homepage" name="homepage" class="form-control" >
+</div><br>
+
+
+<div class="form-group">
+<label for="myfile" >Select a CV:</label>
+  <input type="file" id="myfile" name="myfile" class="form-control" >
+</div>               </fieldset> 
+
+<fieldset>
+    <legend class="le">About the job:</legend> 
+                        <div class="form-group" *ngFor="let w of personal ;index as i">
+                            <label > {{i+1 +"-"}} {{w}}  <br>
+                        <textarea name="message" rows="5" cols="10" class="form-control" ></textarea> </label> <br>
+                       </div>
+                         </fieldset>
+                        <fieldset>
+                            <legend class="le"> About your skills</legend> 
+                            <div *ngFor="let question of questio; index as i">
+                                <label id="example-radio-group-label">{{i+1 + "-"}}  {{question.question}} <br></label>
+                                <div class="row">
+                                    <div class="form-check" *ngFor="let option of question.answer">
+                                        <div class="col-md-3"> 
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" value="option1"
+                                               >
+                                               <label class="form-check-label" for="flexCheckDefault">
+                                           
+                                                {{option}} 
+                                            </label> 
+                                        </div> 
+                                    </div>
+                                </div>
+                             <br> 
+                            </div>
+            </fieldset>
+<br>
+                    <div class="form-group" style="text-align:center ;">
+                        <div class="alert alert-danger" role="alert" *ngIf="requiredForm.status === 'INVALID'">
+                            Please fill in the blank fields and make sure that the format is correct, whether for the email or phone number!!!
+                          </div>
+                          <div class="alert alert-success" role="alert" *ngIf="requiredForm.status === 'VALID'">
+                            You can Submit!!!
+                          </div>
+                       
+                        <br>
+                        <button  class="button" >Submit</button>
+                        <br>
+                        
+                       
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+    
+    <router-outlet></router-outlet>
